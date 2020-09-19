@@ -1,4 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'from@example.com'
+  @event = Event.find(params[:id])
+  default from: @event.user.email
   layout 'mailer'
 end

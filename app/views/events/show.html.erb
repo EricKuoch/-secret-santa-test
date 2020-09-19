@@ -1,0 +1,17 @@
+<h1><%= @event.title %> </h1>
+
+<%= simple_form_for [@event, @attendee] do |f| %>
+  <%= f.input :email %>
+  <%= f.button :submit, "Add a new participant", class: "btn btn-primary" %>
+<% end %>
+
+<h5>The list of your participants</h5>
+<% @event.attendees.each do |attendee| %>
+  <li>
+    <%= attendee.email %>
+  </li>
+<% end %>
+
+<%= simple_form_for [@event] do |f| %>
+  <%= f.submit class: "btn btn-primary" %>
+<% end %>

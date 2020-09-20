@@ -5,11 +5,12 @@ class UserMailer < ApplicationMailer
   #
   #   en.user_mailer.welcome.subject
   #
-  def welcome
-    @user = params[:user]
+  def welcome(user)
+    @user = user
 
-    mail(to: @event.attendees.each do |attendee|
+    mail(to: @assignments.each do |attendee|
       attendee.email
-    end, subject: 'Welcome to Le Wagon' )
+    end,
+    subject: 'Secret Santa !' )
   end
 end

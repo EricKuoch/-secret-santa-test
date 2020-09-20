@@ -7,7 +7,6 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.user = current_user
     if @event.save
-      Attendee.create(user: current_user, event: @event)
       redirect_to @event, notice: 'Event was successfully created.'
     else
       render :new
@@ -19,16 +18,20 @@ class EventsController < ApplicationController
     @attendee = Attendee.new
   end
 
-  def edit
-    @event = Event.find(params[:id])
-  end
+  def group
 
-  def update
+    #Creer le group de participants avec tous les mails (attendee_list)
+    @attendee_list = []
     @event = Event.find(params[:id])
-    @event.update(event_params)
-    @event.group = @event.attendees.each do |attendee|
-      attendee.email
+    @event.attendees.each do |attendee|
+      @attendee_list << attendee.email
     end
+    @event.save
+
+    # associer de manière aléatoire un utilisateur à un autre
+    @pairs_shuffled = @attendee_list.shuffle
+    @pairs_shuffled << @pairs_shuffled.first # repeat the first player
+    @assignments = @pairs_shuffled.each_cons(2).to_a
   end
 
 

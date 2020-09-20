@@ -1,17 +1,27 @@
-<h1><%= @event.title %> </h1>
-
-<%= simple_form_for [@event, @attendee] do |f| %>
-  <%= f.input :email %>
-  <%= f.button :submit, "Add a new participant", class: "btn btn-primary" %>
-<% end %>
-
-<h5>The list of your participants</h5>
-<% @event.attendees.each do |attendee| %>
-  <li>
-    <%= attendee.email %>
-  </li>
-<% end %>
-
-<%= simple_form_for [@event] do |f| %>
-  <%= f.submit class: "btn btn-primary" %>
-<% end %>
+<div class="container">
+  <div class="text-center">
+    <h1><%= @event.title %> 🎁</h1>
+  </div>
+  <p>Description : <strong> <%= @event.description %> </strong>  </p>
+  <p> Each person has to spend: <strong> <%= @event.max_amount %>€  </strong> </p>
+  <p> Date: <strong><%= @event.date %></strong></p>
+  <%= simple_form_for [@event, @attendee] do |f| %>
+    <%= f.input :email, label:"Give the e-mail of your participants"  %>
+    <%= f.button :submit, "+ New participant", class: "btn btn-primary" %>
+  <% end %>
+  <div class="list">
+    <h5>The list of your participants(<%= @event.attendees.size + 1 %>):</h5>
+    1 - <%= @event.user.email %> (organizer)
+    <% @event.attendees.each_with_index do |attendee, index| %>
+      <li>
+        <%= index + 2 %> - <%= attendee.email %>
+      </li>
+    <% end %>
+  </div>
+  <div class="text-center">
+    <%= link_to group_event_path do %>
+      <p class= "button-start"> Send emails to the participants</p>
+    <% end %>
+    <p> <small>(By clicking, you will randomly assign persons to each other to give a present to one another.) </small>  </p>
+  </div>
+</div>

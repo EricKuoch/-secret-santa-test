@@ -1,0 +1,11 @@
+
+<%= @assignments %>
+
+<br>
+
+<% @assignments.each do |attendee| %>
+<li>
+
+ <strong> <%= attendee.first %></strong>  has to send a gift to <strong><%= attendee.last %> </strong>
+</li>
+<% end %>

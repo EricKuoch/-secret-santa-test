@@ -1,11 +1,14 @@
+<div class="container">
 
-<%= @assignments %>
-
-<br>
-
-<% @assignments.each do |attendee| %>
-<li>
-
- <strong> <%= attendee.first %></strong>  has to send a gift to <strong><%= attendee.last %> </strong>
-</li>
-<% end %>
+  <h1>Hello !</h1>
+  <h5>Here is the pair assignments between the attendees of the event</h5>
+  <% @assignments.each do |attendee| %>
+  <li>
+   <strong> <%= attendee.first %></strong> has to send a gift to <strong><%= attendee.last %> </strong> (<small> <%= attendee.first %> will receive by email the name of <%= attendee.last %> </small> )
+  </li>
+  <% end %>
+  <br>
+  <div class="text-center">
+    <h1> Happy Secret Santa ! 🎁💫 </h1>
+  </div>
+</div>

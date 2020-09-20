@@ -18,7 +18,7 @@ class EventsController < ApplicationController
     @attendee = Attendee.new
   end
 
-  def group
+  def group #(group of attendee)
 
     #Creer le group de participants avec tous les mails (attendee_list)
     @attendee_list = []
@@ -30,7 +30,7 @@ class EventsController < ApplicationController
 
     # associer de manière aléatoire un utilisateur à un autre
     @pairs_shuffled = @attendee_list.shuffle
-    @pairs_shuffled << @pairs_shuffled.first # repeat the first player
+    @pairs_shuffled << @pairs_shuffled.first #reprendre le premier attendee
     @assignments = @pairs_shuffled.each_cons(2).to_a
   end
 

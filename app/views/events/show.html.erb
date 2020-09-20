@@ -2,13 +2,17 @@
   <div class="text-center">
     <h1><%= @event.title %> 🎁</h1>
   </div>
-  <p>Description : <strong> <%= @event.description %> </strong>  </p>
-  <p> Each person has to spend: <strong> <%= @event.max_amount %>€  </strong> </p>
-  <p> Date: <strong><%= @event.date %></strong></p>
+  <div class="details">
+    <p>Description : <strong> <%= @event.description %> </strong>  </p>
+    <p> Each person has to spend: <strong> <%= @event.max_amount %>€  </strong> </p>
+    <p> Date: <strong><%= @event.date %></strong></p>
+  </div>
+
   <%= simple_form_for [@event, @attendee] do |f| %>
     <%= f.input :email, label:"Give the e-mail of your participants"  %>
     <%= f.button :submit, "+ New participant", class: "btn btn-primary" %>
   <% end %>
+
   <div class="list">
     <h5>The list of your participants(<%= @event.attendees.size + 1 %>):</h5>
     1 - <%= @event.user.email %> (organizer)

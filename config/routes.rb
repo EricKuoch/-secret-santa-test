@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
-  resources :events do
-    resources :attendees
+  resources :events, only: [:create, :show, :new, :update, :group] do
+    resources :attendees, only: [:create, :new]
   end
   resources :events do
     member do

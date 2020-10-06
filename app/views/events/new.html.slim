@@ -1,0 +1,12 @@
+.new
+  .container
+    .form
+      h4
+        strong Give us some information about your next Secret Santa ! 🎁
+      = simple_form_for [ @event] do |f|
+        = f.input :title, label: "EVENT'S TITLE"
+        = f.input :description, label: "DESCRIPTION"
+        = f.input :max_amount, label: "AMOUNT TO SPEND (€)"
+        = f.input :date, label: "DATE"
+        .text-center
+          = f.submit "Create your Secret Santa", class: "btn btn-primary"

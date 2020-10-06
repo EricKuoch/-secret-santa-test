@@ -1,0 +1,42 @@
+.container
+  .text-center
+    h1
+      = @event.title
+      |  🎁
+  .details
+    p
+      | Description :
+      strong
+        = @event.description
+    p
+      |  Each person has to spend:
+      strong
+        = @event.max_amount
+      |€
+    p
+      |Date:
+      strong
+        = @event.date
+  = simple_form_for [@event, @attendee] do |f|
+    = f.input :email, label:"Give the e-mail of your participants"
+    = f.button :submit, "+ New participant", class: "btn btn-primary"
+  .list
+    h5
+      | The list of your participants(
+      = @event.attendees.size + 1
+      | ):
+    |  1 -
+    = @event.user.email
+    |  (organizer)
+    - @event.attendees.each_with_index do |attendee, index|
+      li
+        = index + 2
+        |  -
+        = attendee.email
+  .text-center
+    = link_to group_event_path do
+      p.button-start
+        |  Send emails to the participants
+    p
+      small
+        | (By clicking, you will randomly assign persons to each other to give a present to one another.)

@@ -1,0 +1,18 @@
+.container
+  h1 Hello !
+  h5 Here is the pair assignments between the attendees of the event
+  - @assignments.each do |attendee|
+    li
+      strong
+        = attendee.first
+      | has to send a gift to
+      strong
+        = attendee.last
+      | (
+      small
+        = attendee.first
+        | will receive by email the name of #{attendee.last}
+      | )
+  br/
+  .text-center
+    h1 Happy Secret Santa ! 🎁💫
